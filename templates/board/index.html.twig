@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+{% include 'board/pattern/head.html' %}
+
+<body class="color4">
+        {% include 'board/pattern/header.html' %}
+        <main>
+                <div class="container">
+                        <div class="card color6">
+                                <h1 class="text1 center titre">Teams</h1>
+                                <table class="color5 responsive-table">
+                                        <thead class="text5">
+                                                <tr>
+                                                        <th class="center">Teams</th>
+                                                        <th class="center">Win</th>
+                                                        <th class="center">Lost</th>
+                                                        <th class="center">Equal</th>
+                                                </tr>
+                                        </thead>
+                                        <tbody>
+                                                {#% for team in team %#}
+                                                <tr>
+                                                        <td class="center">team.name</td>
+                                                        <td class="center">won.1</td>
+                                                        <td class="center">lost.1</td>
+                                                        <td class="center">equal.1</td>
+                                                </tr>
+                                                {#% endfor %#}
+                                        </tbody>
+                                </table>
+                        </div>
+                </div>
+        </main>
+        {% include 'board/pattern/footer.html' %}
+</body>
+</html>

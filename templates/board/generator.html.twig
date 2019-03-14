@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+{% include 'board/pattern/head.html' %}
+
+<body class="color4">
+        {% include 'board/pattern/header.html' %}
+        <main>
+		<div class="row">
+			<div class="col s12 m6">
+                <div class="card color3 white-text">
+                    <div class="card-content">
+                        <span class="card-title">Team Maker</span>
+                        <form class="col s12" method="POST" action="/new/teams">
+                            <div class="input-field col s12">
+                                <label for="name">Country name</label>
+			                    <input type="text" name="name" id="name" required>
+                            </div>
+                            <div class="input-field col s12">
+                                <label for="skill_mu">Skill_mu</label>
+			                    <input type="text" name="skill_mu" id="skill_mu" required>
+                            </div>
+                            <div class="input-field col s12">
+                                <label for="skill_sigma">Skill sigma</label><br>
+                                <input type="text" name="skill_sigma" id="skill_sigma" required>
+                            </div>
+                            <button class="btn waves-effect waves-light color3" type="submit" name="action">Submit
+                                <i class="material-icons right">send</i>
+                            </button>
+                        </form>
+                            {% if newTeam %}
+                            <div class="newTeam">
+                                <p><a href="/teams/{{ newTeam.id }}">{{ newTeam.name }}</a> added !</p>
+                            </div>
+                            {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6">
+                <div class="card color3 white-text">
+                    <div class="card-content">
+                        <span class="card-title">Match Maker</span>
+                        <form class="col s12" method="POST" action="/new/matches">
+                            <div class="input-field col s6">
+                                <select name="id_team1">
+                                    <option value="" disabled selected>Team 1:</option>
+                                    {% for team in teams %}
+                                        <option value="{{ team.id }}">{{ team.name }} | µ : {{ team.skillMu }} | σ {{ team.skillSigma }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="input-field col s6">
+                                <select name="id_team2">
+                                <option value="" disabled selected>Team 2:</option>
+                                    {% for team in teams %}
+                                        <option value="{{ team.id }}">{{ team.name }} | µ : {{ team.skillMu }} | σ {{ team.skillSigma }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="input-field col s12">
+                                <span class="grey-text">Start</span>
+			                    <input type="datetime-local" name="start" id="start" placeholder="start" required>
+                            </div>
+                            <div class="input-field col s12">
+                                <span class="grey-text">End</span>
+			                    <input type="datetime-local" name="end" id="end" placeholder="end" required>
+                            </div>
+                            <button class="btn waves-effect waves-light color3" type="submit" name="action">Submit
+                                <i class="material-icons right">send</i>
+                            </button>
+                        </form>
+                        	{% if winner %}
+                            <div class="winner">
+                                <p><a href="/teams/{{ winner.id }}">{{ winner }}</a> wins !</p>
+                            </div>
+                            {% endif %}
+                    </div>
+                </div>
+            </div>
+		</div>
+        </main>
+        {% include 'board/pattern/footer.html' %}
+</body>
+</html>

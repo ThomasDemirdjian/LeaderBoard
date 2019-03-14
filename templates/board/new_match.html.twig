@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Match Maker</title>
+	</head>
+	<body>
+		<h1>Make Match:</h1>
+		<form action="/match/new" method="POST">
+			<label for="id_team1">Choose team 1:</label>
+			<select name="id_team1">
+				{% for team in teams %}
+					<option value="{{ team.id }}">{{ team.name }} | µ : {{ team.skillMu }} | σ {{ team.skillSigma }}</option>
+				{% endfor %}
+			</select>
+			<label for="id_team2">Choose team 2:</label>
+			<select name="id_team2">
+				{% for team in teams %}
+					<option value="{{ team.id }}">{{ team.name }} | µ : {{ team.skillMu }} | σ {{ team.skillSigma }}</option>
+				{% endfor %}
+			</select><br>
+			<label for="skill_mu">Start</label>
+			<input type="datetime-local" name="start" id="start" required>
+			<label for="end">End</label>
+			<input type="datetime-local" name="end" id="end" required>
+			<input type="submit" value="OK">
+		</form>
+		{% if winner %}
+			<div class="winner">
+				<p><a href="/teams/{{ winner.id }}">{{ winner }}</a> wins !</p>
+			</div>
+		{% endif %}
+	</body>
+</html>

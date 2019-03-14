@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+{% include 'board/pattern/head.html' %}
+
+<body class="color4">
+        {% include 'board/pattern/header.html' %}
+        <main>
+        {% set rank = 0 %}
+                <div class="container">
+                        <div class="card color3">
+                                <h1 class="text1 center titre">Teams</h1>
+                                <table class="color5 responsive-table">
+                                        <thead class="text5">
+                                                <tr>
+                                                        <th class="center">Ranq</th>
+                                                        <th class="center">Name</th>
+                                                        <th class="center">Won</th>
+                                                        <th class="center">Lost</th>
+                                                        <th class="center">μ</th>
+                                                        <th class="center">σ</td>
+                                                </tr>
+                                        </thead>
+                                        <tbody>
+                                                {% for team in teams %}
+                                                <tr>
+                                                        {% set rank = rank + 1 %}
+                                                        <td class="center">{{ rank }}</td>
+                                                        <td class="center"><a href="/teams/{{ team.id }}">{{ team.name }}</td>
+                                                        <td class="center">{{ teamMatches[team.id].won }}</td>
+                                                        <td class="center">{{ teamMatches[team.id].lost }}</td>
+                                                        <td class="center">{{ team.SkillMu }}</td>
+                                                        <td class="center">{{ team.SkillSigma }}</td>
+                                                </tr>
+                                                {% endfor %}
+                                        </tbody>
+                                </table>
+                        </div>
+                </div>
+        </main>
+        {% include 'board/pattern/footer.html' %}
+</body>
+</html>
